@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jobify - Job Details</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body class="common">
+  <header class="common-header">
+    <div class="navbar">
+      <h2 class="logo">Jobify</h2>
+      <nav class="common-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="jobs.html">Jobs</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container" id="jobDetails">
+    <h1 class="page-title">Loading...</h1>
+  </main>
+
+  <script>
+   const jobs = [
+  { id: 1, title: 'Frontend Developer', company: 'BJIT Ltd.', location: 'Dhaka', category: 'IT', description: 'Develop responsive interfaces using React or Vue. Work with backend APIs.' },
+  { id: 2, title: 'Backend Engineer', company: 'Datasoft Systems', location: 'Dhaka', category: 'IT', description: 'Build scalable backend systems with Node.js or Laravel.' },
+  { id: 3, title: 'UI/UX Designer', company: 'Dream71', location: 'Dhaka', category: 'Design', description: 'Create intuitive designs for mobile and web platforms.' },
+  { id: 4, title: 'Digital Marketer', company: 'GEEKY Social', location: 'Dhaka', category: 'Marketing', description: 'Plan and execute digital campaigns and SEO strategy.' },
+  { id: 5, title: 'Data Analyst', company: 'Robi Axiata Ltd.', location: 'Dhaka', category: 'IT', description: 'Analyze telecom data and prepare business reports.' },
+  { id: 6, title: 'Product Manager', company: 'bKash Limited', location: 'Dhaka', category: 'Management', description: 'Lead mobile financial product planning and execution.' },
+  { id: 7, title: 'Quality Assurance Engineer', company: 'TigerIT Bangladesh', location: 'Dhaka', category: 'IT', description: 'Test software products to ensure quality and performance.' },
+  { id: 8, title: 'Mobile App Developer', company: 'RiseUp Labs', location: 'Dhaka', category: 'IT', description: 'Develop Android/iOS apps using Flutter or native platforms.' },
+  { id: 9, title: 'Cloud Engineer', company: 'Grameenphone', location: 'Dhaka', category: 'IT', description: 'Manage cloud infrastructure and virtual servers.' },
+  { id: 10, title: 'DevOps Engineer', company: 'Enosis Solutions', location: 'Dhaka', category: 'IT', description: 'Implement CI/CD pipelines and automate server deployment.' },
+  { id: 11, title: 'Network Engineer', company: 'Banglalink', location: 'Dhaka', category: 'IT', description: 'Monitor and troubleshoot enterprise network systems.' },
+  { id: 12, title: 'Content Writer', company: 'Bdjobs.com', location: 'Dhaka', category: 'Marketing', description: 'Write engaging job-related articles and website content.' },
+  { id: 13, title: 'SEO Specialist', company: 'Sajida Foundation', location: 'Dhaka', category: 'Marketing', description: 'Improve online presence through SEO strategies.' },
+  { id: 14, title: 'Business Analyst', company: 'IFIC Bank Ltd.', location: 'Dhaka', category: 'Management', description: 'Analyze business processes and improve operations.' },
+  { id: 15, title: 'Cybersecurity Analyst', company: 'LEADS Corporation', location: 'Dhaka', category: 'IT', description: 'Protect systems against security threats.' },
+  { id: 16, title: 'Machine Learning Engineer', company: 'NVIDIA', location: 'Santa Clara', category: 'IT', description: 'Develop AI solutions and machine learning models.' },
+  { id: 17, title: 'HR Manager', company: 'Adobe', location: 'San Jose', category: 'Management', description: 'Lead HR strategies for employee engagement.' },
+  { id: 18, title: 'Software Tester', company: 'SAP', location: 'Walldorf', category: 'IT', description: 'Test enterprise software for bugs and performance.' },
+  { id: 19, title: 'Graphic Designer', company: 'Canva', location: 'Sydney', category: 'Design', description: 'Design creative content for digital platforms.' },
+  { id: 20, title: 'Technical Support Engineer', company: 'Dell', location: 'Round Rock', category: 'Support', description: 'Provide tech support to global customers.' },
+];
+
+    function getJobIdFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return parseInt(params.get('id'));
+    }
+
+    function renderJobDetails() {
+      const jobId = getJobIdFromURL();
+      const job = jobs.find(j => j.id === jobId);
+
+      const container = document.getElementById('jobDetails');
+      if (!job) {
+        container.innerHTML = '<h1 class="page-title">Job not found</h1><p>Sorry, we couldn\'t find the job you are looking for.</p>';
+        return;
+      }
+
+      container.innerHTML = `
+        <h1 class="page-title">${job.title} @ ${job.company}</h1>
+        <div class="job-card">
+          <p><strong>Location:</strong> ${job.location}</p>
+          <p><strong>Category:</strong> ${job.category}</p>
+          <p><strong>Description:</strong> ${job.description}</p>
+          <a href="apply.html?id=${job.id}" class="apply-btn">Apply Now</a>
+        </div>
+      `;
+    }
+
+    window.onload = renderJobDetails;
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jobify - Apply for Job</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body class="common">
+  <header class="common-header">
+    <div class="navbar">
+      <h2 class="logo">Jobify</h2>
+      <nav class="common-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="jobs.html">Jobs</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container" id="applyFormContainer">
+    <h1 class="page-title">Apply for Job</h1>
+
+    <form id="applyForm" onsubmit="return submitApplication(event)">
+      <label for="jobTitle">Job Title</label>
+      <input type="text" id="jobTitle" name="jobTitle" readonly />
+
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="cvFile">Upload Your CV / Resume</label>
+      <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx" required />
+
+      <label for="additionalDocs">Additional Documents (optional)</label>
+      <input type="file" id="additionalDocs" name="additionalDocs" multiple accept=".pdf,.doc,.docx,.jpg,.png" />
+
+      <button type="submit">Submit Application</button>
+    </form>
+
+    <p id="message" style="margin-top:20px; font-weight:bold; color:green;"></p>
+  </main>
+
+  <script>
+    const jobs = [
+      { id: 1, title: 'Frontend Developer' },
+      { id: 2, title: 'Backend Engineer' },
+      { id: 3, title: 'UI/UX Designer' },
+      { id: 4, title: 'Digital Marketer' },
+      { id: 5, title: 'Data Scientist' },
+      { id: 6, title: 'Product Manager' },
+      { id: 7, title: 'Quality Analyst' },
+      { id: 8, title: 'Mobile App Developer' },
+      { id: 9, title: 'Cloud Engineer' },
+      { id: 10, title: 'DevOps Engineer' },
+      { id: 11, title: 'Network Engineer' },
+      { id: 12, title: 'Content Writer' },
+      { id: 13, title: 'SEO Specialist' },
+      { id: 14, title: 'Business Analyst' },
+      { id: 15, title: 'Cybersecurity Expert' },
+      { id: 16, title: 'Machine Learning Engineer' },
+      { id: 17, title: 'Technical Support Engineer' },
+      { id: 18, title: 'HR Manager' },
+      { id: 19, title: 'Software Tester' },
+      { id: 20, title: 'Graphic Designer' }
+    ];
+
+    function getJobIdFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return parseInt(params.get('id'));
+    }
+
+    function setJobTitle() {
+      const jobId = getJobIdFromURL();
+      const job = jobs.find(j => j.id === jobId);
+      if (job) {
+        document.getElementById('jobTitle').value = job.title;
+      } else {
+        document.getElementById('jobTitle').value = '';
+      }
+    }
+
+    function submitApplication(event) {
+      event.preventDefault();
+
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const cvFile = document.getElementById('cvFile').files[0];
+
+      if (!fullName || !email || !phone || !cvFile) {
+        alert('Please fill in all required fields and upload your CV.');
+        return false;
+      }
+
+      // Simulate submission success
+      document.getElementById('message').textContent = "Application submitted successfully! We'll contact you soon.";
+
+      // Reset form after submission
+      document.getElementById('applyForm').reset();
+
+      return false; // prevent real submission (no backend)
+    }
+
+    window.onload = setJobTitle;
+  </script>
+</body>
+</html>

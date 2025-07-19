@@ -1,0 +1,264 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f6f9fc;
+  color: #333;
+}
+
+header {
+  background: linear-gradient(120deg, #00b4db, #0083b0);
+  color: white;
+  padding-bottom: 80px;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+nav a:hover, nav a.active {
+  color: #ffe066;
+}
+
+.hero {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  animation: pop 1.5s ease-out;
+}
+
+.hero .highlight {
+  color: #ffe066;
+  animation: blink 2s infinite;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: #ffe066;
+  color: #333;
+  padding: 12px 25px;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #ffcc00;
+}
+
+.why-choose {
+  padding: 60px 30px;
+  text-align: center;
+}
+
+.why-choose h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.feature-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 300px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background-color: #002633;
+  color: white;
+  margin-top: 160px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Common styles for other pages */
+
+body.common {
+  background: #ffffff;
+  padding: 0 20px 40px 20px;
+}
+
+header.common-header {
+  background: linear-gradient(to right, #00b4db, #0083b0);
+  padding: 15px 30px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav.common-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav.common-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav.common-nav ul li a.active,
+nav.common-nav ul li a:hover {
+  color: #ffe066;
+}
+
+.main-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: rgb(255, 255, 255);
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+h1.page-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #0083b0;
+}
+
+ul.job-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.job-list li {
+  margin-bottom: 18px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+ul.job-list li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+
+ul.job-list li a:hover {
+  color: #00b4db;
+}
+
+.job-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.job-card:hover {
+  transform: scale(1.02);
+}
+
+.job-card h3 {
+  color: #0083b0;
+  margin-bottom: 10px;
+}
+
+.job-card p {
+  margin: 6px 0;
+  color: #555;
+}
+
+.apply-btn {
+  display: inline-block;
+  margin-top: 15px;
+  background: #00b4db;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #444;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  margin-top: 20px;
+  background: #00b4db;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #0083b0;
+}

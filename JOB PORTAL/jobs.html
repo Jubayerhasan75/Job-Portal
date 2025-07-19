@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jobify - Jobs List</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Jobs page specific styles */
+
+    .job-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+      gap: 25px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .job-card {
+      background: #ffecd2; 
+      border-radius: 15px;
+      padding: 25px 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .job-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(255, 81, 47, 0.6);
+      border-color: #ff512f;
+    }
+
+    .job-card h3 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 8px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .company-name {
+      background: #ff512f;  
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 4px 10px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(255,81,47,0.4);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .job-location, .job-category {
+      font-size: 0.95rem;
+      color: #555;
+      margin: 5px 0;
+      font-weight: 500;
+    }
+
+    .apply-link {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff512f;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 6px 12px rgba(255,81,47,0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      user-select: none;
+    }
+
+    .job-card:hover .apply-link {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body class="common">
+  <header class="common-header">
+    <div class="navbar">
+      <h2 class="logo">Jobify</h2>
+      <nav class="common-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="jobs.html" class="active">Jobs</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <h1 class="page-title">Available Jobs</h1>
+    <ul class="job-list" id="jobList">
+      <!-- Job cards will be inserted here dynamically -->
+    </ul>
+  </main>
+
+  <script>
+    const jobs = [
+  { id: 1, title: 'Frontend Developer', company: 'BJIT Ltd.', location: 'Dhaka', category: 'IT', description: 'Develop responsive interfaces using React or Vue. Work with backend APIs.' },
+  { id: 2, title: 'Backend Engineer', company: 'Datasoft Systems', location: 'Dhaka', category: 'IT', description: 'Build scalable backend systems with Node.js or Laravel.' },
+  { id: 3, title: 'UI/UX Designer', company: 'Dream71', location: 'Dhaka', category: 'Design', description: 'Create intuitive designs for mobile and web platforms.' },
+  { id: 4, title: 'Digital Marketer', company: 'GEEKY Social', location: 'Dhaka', category: 'Marketing', description: 'Plan and execute digital campaigns and SEO strategy.' },
+  { id: 5, title: 'Data Analyst', company: 'Robi Axiata Ltd.', location: 'Dhaka', category: 'IT', description: 'Analyze telecom data and prepare business reports.' },
+  { id: 6, title: 'Product Manager', company: 'bKash Limited', location: 'Dhaka', category: 'Management', description: 'Lead mobile financial product planning and execution.' },
+  { id: 7, title: 'Quality Assurance Engineer', company: 'TigerIT Bangladesh', location: 'Dhaka', category: 'IT', description: 'Test software products to ensure quality and performance.' },
+  { id: 8, title: 'Mobile App Developer', company: 'RiseUp Labs', location: 'Dhaka', category: 'IT', description: 'Develop Android/iOS apps using Flutter or native platforms.' },
+  { id: 9, title: 'Cloud Engineer', company: 'Grameenphone', location: 'Dhaka', category: 'IT', description: 'Manage cloud infrastructure and virtual servers.' },
+  { id: 10, title: 'DevOps Engineer', company: 'Enosis Solutions', location: 'Dhaka', category: 'IT', description: 'Implement CI/CD pipelines and automate server deployment.' },
+  { id: 11, title: 'Network Engineer', company: 'Banglalink', location: 'Dhaka', category: 'IT', description: 'Monitor and troubleshoot enterprise network systems.' },
+  { id: 12, title: 'Content Writer', company: 'Bdjobs.com', location: 'Dhaka', category: 'Marketing', description: 'Write engaging job-related articles and website content.' },
+  { id: 13, title: 'SEO Specialist', company: 'Sajida Foundation', location: 'Dhaka', category: 'Marketing', description: 'Improve online presence through SEO strategies.' },
+  { id: 14, title: 'Business Analyst', company: 'IFIC Bank Ltd.', location: 'Dhaka', category: 'Management', description: 'Analyze business processes and improve operations.' },
+  { id: 15, title: 'Cybersecurity Analyst', company: 'LEADS Corporation', location: 'Dhaka', category: 'IT', description: 'Protect systems against security threats.' },
+
+  { id: 16, title: 'Machine Learning Engineer', company: 'NVIDIA', location: 'Santa Clara', category: 'IT', description: 'Develop AI solutions and machine learning models.' },
+  { id: 17, title: 'HR Manager', company: 'Adobe', location: 'San Jose', category: 'Management', description: 'Lead HR strategies for employee engagement.' },
+  { id: 18, title: 'Software Tester', company: 'SAP', location: 'Walldorf', category: 'IT', description: 'Test enterprise software for bugs and performance.' },
+  { id: 19, title: 'Graphic Designer', company: 'Canva', location: 'Sydney', category: 'Design', description: 'Design creative content for digital platforms.' },
+  { id: 20, title: 'Technical Support Engineer', company: 'Dell', location: 'Round Rock', category: 'Support', description: 'Provide tech support to global customers.' },
+];
+
+
+    const jobList = document.getElementById('jobList');
+    jobs.forEach(job => {
+      const li = document.createElement('li');
+      li.className = "job-card";
+      li.innerHTML = `
+        <h3>${job.title} <span class="company-name">${job.company}</span></h3>
+        <p class="job-location"><strong>Location:</strong> ${job.location}</p>
+        <p class="job-category"><strong>Category:</strong> ${job.category}</p>
+        <a href="job-details.html?id=${job.id}" class="apply-link">View Details</a>
+      `;
+      jobList.appendChild(li);
+    });
+  </script>
+</body>
+</html>
